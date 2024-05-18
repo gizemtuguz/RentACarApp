@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".CarDetailActivity">
+
+    <!-- Top Space with Logo -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/secondaryColor"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/logo"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Luxury Car Rental"
+            android:textColor="@color/backgroundColor"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-medium" />
+    </LinearLayout>
+
+    <!-- Content Layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/detailViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                />
+
+            <TextView
+                android:id="@+id/carBrandModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Brand Model"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="20sp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/carType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Type"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif" />
+
+            <TextView
+                android:id="@+id/carFuel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fuel"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif" />
+
+            <TextView
+                android:id="@+id/carTransmission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Transmission"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif" />
+
+            <TextView
+                android:id="@+id/carDailyRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Daily Rate"
+                android:textColor="@color/secondaryColor"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/carWeeklyRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weekly Rate"
+                android:textColor="@color/secondaryColor"
+                android:textSize="18sp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif-medium" />
+
+            <Button
+                android:id="@+id/rentButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="Rent"
+                android:textColor="@color/accentColor"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="Back"
+                android:textColor="@color/accentColor"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-medium" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

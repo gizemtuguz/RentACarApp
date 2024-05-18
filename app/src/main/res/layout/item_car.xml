@@ -1,0 +1,36 @@
+<!-- res/layout/item_car.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="#FFFFFF"
+    android:layout_margin="8dp">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/carViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+
+    <TextView
+        android:id="@+id/carBrandModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brand Model"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/carYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Year"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/carTransmission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transmission"
+        android:layout_marginTop="4dp" />
+</LinearLayout>
