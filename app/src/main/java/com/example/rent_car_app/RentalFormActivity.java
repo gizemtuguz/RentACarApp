@@ -118,7 +118,7 @@ public class RentalFormActivity extends AppCompatActivity {
         String weeklyRate = intent.getStringExtra("weeklyRate");
         carModel = brandModel;
 
-        carDetails.setText("Car Details: " + brandModel + ", " + type + ", " + fuel + ", " + transmission + ", Daily Rate: " + dailyRate + ", Weekly Rate: " + weeklyRate);
+        carDetails.setText("Araba Özellikleri: " + brandModel + ", " + type + ", " + fuel + ", " + transmission + ", Günlük Bedel: " + dailyRate + ", Haftalık Bedel: " + weeklyRate);
 
         // Kaydet butonuna tıklama olayını ekler.
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -174,7 +174,7 @@ public class RentalFormActivity extends AppCompatActivity {
 
     // Tarih etiketini günceller.
     private void updateLabel(EditText editText, Calendar calendar) {
-        String myFormat = "MM/dd/yy"; // İstenen tarih formatı
+        String myFormat = "dd/MM/yy"; // İstenen tarih formatı
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         editText.setText(sdf.format(calendar.getTime()));
@@ -191,7 +191,7 @@ public class RentalFormActivity extends AppCompatActivity {
         long dailyRate = 100; // Örnek günlük ücret
         long totalPrice = days * dailyRate;
 
-        rentalPrice.setText("Total Price: $" + totalPrice);
+        rentalPrice.setText("Toplam Kiralama Bedeli: ₺" + totalPrice);
     }
 
     // Kiralama verilerini kaydeder.
@@ -201,10 +201,10 @@ public class RentalFormActivity extends AppCompatActivity {
         String emailText = email.getText().toString();
         String start = startDate.getText().toString();
         String end = endDate.getText().toString();
-        String priceText = rentalPrice.getText().toString().replace("Total Price: $", "");
+        String priceText = rentalPrice.getText().toString().replace("Total Price: ₺", "");
 
         if (tc.isEmpty() || nameText.isEmpty() || emailText.isEmpty() || start.isEmpty() || end.isEmpty() || priceText.isEmpty()) {
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Tüm boşlukları doldurunuz.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -216,10 +216,10 @@ public class RentalFormActivity extends AppCompatActivity {
         double price = Double.parseDouble(priceText);
         long id = dbHelper.addRental(tc, nameText, emailText, start, end, price, carModel);
         if (id != -1) {
-            Toast.makeText(this, "Rental saved successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Kiralama talebiniz alındı.", Toast.LENGTH_SHORT).show();
             finish();
         } else {
-            Toast.makeText(this, "Failed to save rental", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Kiralama taledi alınamadı. Tekrar Deneyiniz.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -227,15 +227,15 @@ public class RentalFormActivity extends AppCompatActivity {
     private void showConflictDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Car Unavailable")
-                .setMessage("The selected car is unavailable for the selected dates. Please choose a different car or change the rental dates.")
-                .setPositiveButton("Change Dates", new DialogInterface.OnClickListener() {
+                .setMessage("Seçtiğiniz araç bu tarihlerde kiralanmış durumda. Başka araç seçebilir veya kiralamak istediğiniz tarih aralığını değiştirebilirsiniz.")
+                .setPositiveButton("Tarih Değiştir", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Kullanıcının tarihleri değiştirmesine izin ver
                         dialog.dismiss();
                     }
                 })
-                .setNegativeButton("Change Car", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Araç Değiştir", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Araç seçimine geri dön
@@ -248,7 +248,7 @@ public class RentalFormActivity extends AppCompatActivity {
     // Kiralama verilerini günceller.
     private void updateRental() {
         if (rentalId == -1) {
-            Toast.makeText(this, "No rental to update", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Düzenleme yapılacak kiralama mevcut değil.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -257,10 +257,10 @@ public class RentalFormActivity extends AppCompatActivity {
         String emailText = email.getText().toString();
         String start = startDate.getText().toString();
         String end = endDate.getText().toString();
-        String priceText = rentalPrice.getText().toString().replace("Total Price: $", "");
+        String priceText = rentalPrice.getText().toString().replace("Total Price: ₺", "");
 
         if (tc.isEmpty() || nameText.isEmpty() || emailText.isEmpty() || start.isEmpty() || end.isEmpty() || priceText.isEmpty()) {
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Tüm boşlukları doldurun.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -272,26 +272,26 @@ public class RentalFormActivity extends AppCompatActivity {
         double price = Double.parseDouble(priceText);
         int rowsAffected = dbHelper.updateRental(rentalId, tc, nameText, emailText, start, end, price);
         if (rowsAffected > 0) {
-            Toast.makeText(this, "Rental updated successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Düzenleme başarıyla tamamlandı.", Toast.LENGTH_SHORT).show();
             finish();
         } else {
-            Toast.makeText(this, "Failed to update rental", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Düzenleme yapılamadı. Tekrar Deneyiniz.", Toast.LENGTH_SHORT).show();
         }
     }
 
     // Kiralama verilerini siler.
     private void deleteRental() {
         if (rentalId == -1) {
-            Toast.makeText(this, "No rental to delete", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Silinecek kiralama mevcut değil", Toast.LENGTH_SHORT).show();
             return;
         }
 
         int rowsDeleted = dbHelper.deleteRental(rentalId);
         if (rowsDeleted > 0) {
-            Toast.makeText(this, "Rental deleted successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Kiralama talebi başarıyla silindi.", Toast.LENGTH_SHORT).show();
             finish();
         } else {
-            Toast.makeText(this, "Failed to delete rental", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Kiralama talebi silinemedi.Tekrar Deneyiniz.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -305,7 +305,7 @@ public class RentalFormActivity extends AppCompatActivity {
             email.setText(cursor.getString(cursor.getColumnIndexOrThrow("email")));
             startDate.setText(cursor.getString(cursor.getColumnIndexOrThrow("start_date")));
             endDate.setText(cursor.getString(cursor.getColumnIndexOrThrow("end_date")));
-            rentalPrice.setText("Total Price: $" + cursor.getDouble(cursor.getColumnIndexOrThrow("price")));
+            rentalPrice.setText("Total Price: ₺" + cursor.getDouble(cursor.getColumnIndexOrThrow("price")));
             cursor.close();
         }
     }

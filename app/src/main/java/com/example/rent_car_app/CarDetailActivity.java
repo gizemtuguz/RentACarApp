@@ -48,8 +48,8 @@ public class CarDetailActivity extends AppCompatActivity {
         carType.setText(type);
         carFuel.setText(fuel);
         carTransmission.setText(transmission);
-        carDailyRate.setText("Daily Rate: " + dailyRate);
-        carWeeklyRate.setText("Weekly Rate: " + weeklyRate);
+        carDailyRate.setText("Günlük Kiralama Bedeli: ₺" + dailyRate);
+        carWeeklyRate.setText("Haftalık Kiralama Bedeli: ₺" + weeklyRate);
 
         // Kiralama butonuna tıklama olayını ekledik.
         rentButton.setOnClickListener(new View.OnClickListener() {

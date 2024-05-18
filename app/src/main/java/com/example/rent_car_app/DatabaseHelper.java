@@ -11,7 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     private static final String DATABASE_NAME = "CarRental.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Tablo isimleri
     private static final String TABLE_CARS = "cars";
@@ -78,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Veritabanı güncellendiğinde çağrılır
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Eski tabloları düşür ve yenilerini oluştur
+
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CARS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RENTALS);
         onCreate(db);
